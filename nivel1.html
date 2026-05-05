@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminal 01</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+<div class="container">
+    <h2>Terminal 01</h2>
+    <p>> Introduce el código de acceso</p>
+
+    <input type="text" id="answer" placeholder="código...">
+    <button onclick="checkLevel1()">Ejecutar</button>
+
+    <button class="hint" onclick="showHint(1)">Pista</button>
+
+    <p id="message"></p>
+    
+    <button class="menu-btn" onclick="goMenu()"><< Volver al sistema</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

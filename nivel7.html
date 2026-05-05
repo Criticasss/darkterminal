@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminal 07</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+<div class="container">
+    <h2>TERMINAL 07</h2>
+
+    <p>> pista: protocolo interno bloqueado</p>
+<p>> nombre del sistema: blackout protocol</p>
+    <p>> SISTEMA DE BÚSQUEDA INTERNO</p>
+    <p>> introduce consulta:</p>
+
+    <input type="text" id="search" placeholder="buscar en el sistema...">
+    <button onclick="searchSystem()">Buscar</button>
+
+    <p id="result"></p>
+
+    <hr>
+
+    <p>> usar clave encontrada:</p>
+
+    <input type="text" id="answer" placeholder="respuesta final...">
+    <button onclick="checkLevel7()">Ejecutar</button>
+
+    <p id="message"></p>
+
+    <button class="menu-btn" onclick="goMenu()"><< Volver al sistema</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

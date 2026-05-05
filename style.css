@@ -1,0 +1,168 @@
+body {
+    background: #050505;
+    color: #00ffcc;
+    font-family: monospace;
+    text-align: center;
+    margin: 0;
+}
+
+/* Contenedor */
+.container {
+    margin-top: 100px;
+}
+
+/* Fade */
+.fade-in {
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Texto */
+.subtitle {
+    opacity: 0.7;
+}
+
+.intro {
+    max-width: 500px;
+    margin: auto;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* Cursor terminal */
+body::after {
+    content: "_";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Botones */
+button {
+    background: black;
+    color: #00ffcc;
+    border: 1px solid #00ffcc;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    box-shadow: 0 0 15px #00ffcc;
+}
+
+/* Input */
+input {
+    background: black;
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    padding: 10px;
+}
+
+/* Glitch */
+.glitch {
+    font-size: 3em;
+    animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+    0% { text-shadow: 2px 2px red; }
+    50% { text-shadow: -2px -2px blue; }
+    100% { text-shadow: 2px 2px red; }
+}
+
+/* Error shake */
+.shake {
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+/* Mensajes */
+#message {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Botones especiales */
+.hint {
+    border-color: #ffcc00;
+    color: #ffcc00;
+}
+
+.reset {
+    border-color: red;
+    color: red;
+}
+
+.menu-btn {
+    margin-top: 40px;
+    border-color: #00ccff;
+    color: #00ccff;
+}
+
+.menu-btn:hover {
+    box-shadow: 0 0 15px #00ccff;
+}
+
+.code {
+    color: #ffcc00;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+}
+
+#result {
+    color: #00ff88;
+    margin-top: 10px;
+    font-family: monospace;
+    text-shadow: 0 0 5px #00ff88;
+}
+
+.final-screen {
+    text-align: center;
+    color: #00ff88;
+}
+
+.glitch {
+    font-size: 2.5em;
+    text-shadow: 2px 0 red, -2px 0 blue;
+    animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}
+
+.final-code {
+    margin: 20px;
+    font-size: 1.2em;
+    color: #ffcc00;
+}
+
+.maintenance {
+    background: black;
+    color: #ff4444;
+    text-align: center;
+    font-family: monospace;
+}
+
+.maintenance h1 {
+    font-size: 2em;
+    text-shadow: 0 0 10px red;
+}

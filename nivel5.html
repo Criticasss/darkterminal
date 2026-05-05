@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminal 05</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+<div class="container">
+    <h2>Terminal 05</h2>
+
+    <p>> Archivo cifrado detectado:</p>
+    <p class="code">c2VjcmV0bw==</p>
+
+    <p>> Descodifica el mensaje para continuar</p>
+
+    <input type="text" id="answer" placeholder="respuesta...">
+    <button onclick="checkLevel5()">Ejecutar</button>
+
+    <button class="hint" onclick="showHint(5)">Pista</button>
+
+    <p id="message"></p>
+
+    <button class="menu-btn" onclick="goMenu()"><< Volver al sistema</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
