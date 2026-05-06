@@ -1,4 +1,8 @@
-const MAINTENANCE_MODE = true;
+let timeLeft = 5;
+let timerInterval;
+let correctWire;
+
+const MAINTENANCE_MODE = false;
 
 // Inicializar progreso
 if (!localStorage.getItem("progress")) {
@@ -143,13 +147,71 @@ function checkLevel7() {
         unlock(8);
 
         setTimeout(() => {
-    window.location.href = "final.html";
+    window.location.href = "nivel8.html";
 }, 1200);
 
     } else {
         error(msg, ">> ACCESS DENIED");
     }
 }
+
+// NIVEL 8
+function setRandomWire() {
+    const wires = ["rojo", "azul", "verde"];
+    correctWire = wires[Math.floor(Math.random() * wires.length)];
+
+    console.log("DEBUG cable correcto:", correctWire); // opcional
+}
+
+function startTimer() {
+    const timerElement = document.getElementById("timer");
+
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        timerElement.innerText = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            explode();
+        }
+    }, 1000);
+}
+
+function explode() {
+    const msg = document.getElementById("message");
+
+    clearInterval(timerInterval);
+
+    msg.innerText = "💥 BOOM! SISTEMA DESTRUIDO";
+
+    setTimeout(() => {
+        window.location.reload();
+    }, 1500);
+}
+
+function cutWire(color) {
+    const msg = document.getElementById("message");
+
+    if (color === correctWire) {
+        clearInterval(timerInterval);
+
+        msg.innerText = "✔ BOMBA DESACTIVADA";
+
+        setTimeout(() => {
+            window.location.href = "final.html";
+        }, 1000);
+
+    } else {
+        explode();
+    }
+}
+
+window.onload = function () {
+    if (document.getElementById("timer")) {
+        setRandomWire();
+        startTimer();
+    }
+};
 
 // Feedback
 function success(el, text) {
