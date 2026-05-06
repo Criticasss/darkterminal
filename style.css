@@ -199,3 +199,38 @@ input {
     font-size: 2em;
     color: red;
 }
+
+.bomb {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.wires {
+    display: flex;
+    gap: 20px;
+}
+
+.wire {
+    width: 20px;
+    height: 120px;
+    border-radius: 10px;
+    cursor: pointer;
+    animation: sway 1.5s infinite ease-in-out;
+}
+
+.rojo { background: red; }
+.azul { background: blue; }
+.verde { background: green; }
+
+@keyframes sway {
+    0% { transform: rotate(-5deg) translateY(0); }
+    50% { transform: rotate(5deg) translateY(5px); }
+    100% { transform: rotate(-5deg) translateY(0); }
+}
+
+#timer {
+    font-size: 2em;
+    color: red;
+    margin: 10px;
+}
