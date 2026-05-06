@@ -2,7 +2,7 @@ let timeLeft = 5;
 let timerInterval;
 let correctWire;
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 // Inicializar progreso
 if (!localStorage.getItem("progress")) {
@@ -159,34 +159,20 @@ function checkLevel7() {
 function setRandomWire() {
     const wires = ["rojo", "azul", "verde"];
     correctWire = wires[Math.floor(Math.random() * wires.length)];
-
-    console.log("DEBUG cable correcto:", correctWire); // opcional
 }
 
 function startTimer() {
-    const timerElement = document.getElementById("timer");
+    const timer = document.getElementById("timer");
 
     timerInterval = setInterval(() => {
         timeLeft--;
-        timerElement.innerText = timeLeft;
+        timer.innerText = timeLeft;
 
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
             explode();
         }
     }, 1000);
-}
-
-function explode() {
-    const msg = document.getElementById("message");
-
-    clearInterval(timerInterval);
-
-    msg.innerText = "💥 BOOM! SISTEMA DESTRUIDO";
-
-    setTimeout(() => {
-        window.location.reload();
-    }, 1500);
 }
 
 function cutWire(color) {
@@ -199,14 +185,28 @@ function cutWire(color) {
 
         setTimeout(() => {
             window.location.href = "final.html";
-        }, 1000);
+        }, 800);
 
     } else {
         explode();
     }
 }
 
+function explode() {
+    const msg = document.getElementById("message");
+
+    clearInterval(timerInterval);
+
+    msg.innerText = "💥 BOOM!";
+
+    setTimeout(() => {
+        window.location.reload();
+    }, 1500);
+}
+
 window.onload = function () {
+
+    // 👇 SOLO AÑADE ESTO
     if (document.getElementById("timer")) {
         setRandomWire();
         startTimer();
