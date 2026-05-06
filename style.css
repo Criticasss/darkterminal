@@ -166,3 +166,18 @@ input {
     font-size: 2em;
     text-shadow: 0 0 10px red;
 }
+
+.menu-btn {
+    margin-top: 15px;
+    border: 1px solid #00ff88;
+    color: #00ff88;
+    background: transparent;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    box-shadow: 0 0 10px #00ff88;
+    background: #00ff8820;
+}
