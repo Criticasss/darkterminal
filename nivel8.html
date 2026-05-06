@@ -8,19 +8,22 @@
 <body class="fade-in">
 
 <div class="container">
-    <h2>TERMINAL 08</h2>
 
-    <p>> ALERTA: BOMBA DETECTADA</p>
-    <p>> TIEMPO RESTANTE:</p>
+    <h2>💣 BOMBA ACTIVA</h2>
 
-    <p id="timer">5</p>
+    <p>> corta el cable correcto en 5 segundos</p>
 
-    <p>> corta el cable correcto</p>
+    <div id="timer">5</div>
 
-    <div class="wires">
-        <button onclick="cutWire('rojo')">Cable Rojo</button>
-        <button onclick="cutWire('azul')">Cable Azul</button>
-        <button onclick="cutWire('verde')">Cable Verde</button>
+    <!-- BOMBA -->
+    <div class="bomb">
+        <div class="wires">
+
+            <div class="wire rojo" onclick="cutWire('rojo')"></div>
+            <div class="wire azul" onclick="cutWire('azul')"></div>
+            <div class="wire verde" onclick="cutWire('verde')"></div>
+
+        </div>
     </div>
 
     <p id="message"></p>
