@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminal 08</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+<div class="container">
+    <h2>TERMINAL 08</h2>
+
+    <p>> ALERTA: BOMBA DETECTADA</p>
+    <p>> TIEMPO RESTANTE:</p>
+
+    <p id="timer">5</p>
+
+    <p>> corta el cable correcto</p>
+
+    <div class="wires">
+        <button onclick="cutWire('rojo')">Cable Rojo</button>
+        <button onclick="cutWire('azul')">Cable Azul</button>
+        <button onclick="cutWire('verde')">Cable Verde</button>
+    </div>
+
+    <p id="message"></p>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
