@@ -2,7 +2,7 @@ let timeLeft = 5;
 let timerInterval;
 let correctWire;
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 // Inicializar progreso
 if (!localStorage.getItem("progress")) {
@@ -263,6 +263,26 @@ function findKey() {
 function restartGame() {
     localStorage.clear();
     window.location.href = "index.html";
+}
+
+// INTRO
+window.addEventListener("load", () => {
+
+    const introSeen = localStorage.getItem("introSeen");
+
+    if (introSeen === "true") {
+        const intro = document.getElementById("introScreen");
+
+        if (intro) {
+            intro.style.display = "none";
+        }
+    }
+});
+
+function closeIntro() {
+    localStorage.setItem("introSeen", "true");
+
+    document.getElementById("introScreen").style.display = "none";
 }
 
 if (MAINTENANCE_MODE) {
