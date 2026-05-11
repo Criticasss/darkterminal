@@ -20,12 +20,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// exportamos para script.js
 window.firebaseDB = {
-  db,
-  collection,
-  addDoc,
-  onSnapshot,
-  query,
-  orderBy
+    db,
+    collection,
+    addDoc,
+    onSnapshot,
+    query,
+    orderBy
 };
+
+console.log("FIREBASE CARGADO OK");
