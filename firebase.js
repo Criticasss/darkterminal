@@ -1,3 +1,4 @@
+console.log("🔥 firebase.js está cargando");
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
   getFirestore,
@@ -29,4 +30,4 @@ window.firebaseDB = {
     orderBy
 };
 
-console.log("ok");
+console.log("FIREBASE CARGADO OK");
