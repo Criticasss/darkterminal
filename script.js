@@ -2,7 +2,7 @@ let timeLeft = 5;
 let timerInterval;
 let correctWire;
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 // Inicializar progreso
 if (!localStorage.getItem("progress")) {
@@ -184,7 +184,7 @@ function cutWire(color) {
         msg.innerText = "✔ BOMBA DESACTIVADA";
 
         setTimeout(() => {
-            window.location.href = "final.html";
+            window.location.href = "nivel9.html";
         }, 800);
 
     } else {
@@ -212,6 +212,122 @@ window.onload = function () {
         startTimer();
     }
 };
+
+// NIVEL 9
+function talkToAI() {
+
+    const input =
+        document.getElementById("aiInput")
+        .value
+        .toLowerCase();
+
+    const response =
+        document.getElementById("aiResponse");
+
+    const msg =
+        document.getElementById("message");
+
+    // HELP
+
+    if (input === "help") {
+
+        response.innerText =
+            ">> identifica quién eres.";
+
+    }
+
+    // ACCESS
+
+    else if (input === "access") {
+
+        response.innerText =
+            ">> acceso solo para root.";
+
+    }
+
+    // ROOT
+
+    else if (input === "root") {
+
+        response.innerText =
+            ">> identidad incompleta.";
+    }
+
+    // IAM
+
+    else if (input === "i am") {
+
+        response.innerText =
+            ">> continúa...";
+    }
+
+    // RESPUESTA FINAL
+
+    else if (input === "i am root") {
+
+        msg.innerText =
+            "✔ IA DESACTIVADA";
+
+        setTimeout(() => {
+            window.location.href = "nivel10.html";
+        }, 1200);
+    }
+
+    // RANDOM
+
+    else {
+
+        response.innerText =
+            ">> comando desconocido.";
+    }
+}
+
+//NIVEL 10
+function checkLevel10() {
+
+    const input =
+        document.getElementById("answer")
+        .value
+        .toLowerCase();
+
+    const msg =
+        document.getElementById("message");
+
+    const userID =
+        localStorage.getItem("userID");
+
+    // mostrar ID en pantalla
+    const box =
+        document.getElementById("userIdBox");
+
+    if (box && userID) {
+        box.innerText = userID;
+    }
+
+    if (!userID) {
+
+        msg.innerText =
+            ">> SIN IDENTIDAD";
+
+        return;
+    }
+
+    // RESPUESTA CORRECTA
+    if (input === "confirmo acceso") {
+
+        msg.innerText =
+            "✔ IDENTIDAD VERIFICADA";
+
+        setTimeout(() => {
+            window.location.href = "final.html";
+        }, 1200);
+
+    } else {
+
+        msg.innerText =
+            ">> ACCESO DENEGADO";
+    }
+}
 
 // Feedback
 function success(el, text) {
@@ -261,7 +377,6 @@ function findKey() {
 }
 
 function restartGame() {
-    localStorage.clear();
     window.location.href = "index.html";
 }
 
@@ -284,6 +399,76 @@ function closeIntro() {
 
     document.getElementById("introScreen").style.display = "none";
 }
+
+// CREAR CUENTA
+function createAccount() {
+
+    const randomID =
+        String(Math.floor(1000 + Math.random() * 9000));
+
+    // guardar ID
+    localStorage.setItem("userID", randomID);
+
+    // mostrar mensaje
+    document.getElementById("loginMessage")
+        .innerText =
+        ">> ID creada: " + randomID;
+
+    console.log("ID GUARDADA:", randomID);
+}
+
+// LOGIN
+function login() {
+
+    const input =
+        document.getElementById("loginInput")
+        .value
+        .trim();
+
+    const savedID =
+        localStorage.getItem("userID");
+
+    console.log("INPUT:", input);
+    console.log("GUARDADA:", savedID);
+
+    if (input === savedID) {
+
+        document.getElementById("loginScreen")
+            .style.display = "none";
+
+        showUserID();
+
+    } else {
+
+        document.getElementById("loginMessage")
+            .innerText =
+            ">> ID incorrecta";
+    }
+}
+
+// MOSTRAR ID
+function showUserID() {
+
+    const savedID =
+        localStorage.getItem("userID");
+
+    document.getElementById("userIDDisplay")
+        .innerText = savedID;
+}
+
+//AUTO LOGIN
+window.addEventListener("load", () => {
+
+    const savedID =
+        localStorage.getItem("userID");
+
+    if (savedID) {
+
+        document.getElementById("loginMessage")
+            .innerText =
+            ">> introduce tu ID";
+    }
+});
 
 if (MAINTENANCE_MODE) {
     window.location.href = "mantenimiento.html";
