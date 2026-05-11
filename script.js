@@ -2,7 +2,7 @@ let timeLeft = 5;
 let timerInterval;
 let correctWire;
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 // Inicializar progreso
 if (!localStorage.getItem("progress")) {
@@ -349,6 +349,7 @@ function unlock(level) {
     localStorage.setItem("progress", level);
 }
 
+
 // Pistas
 function showHint(level) {
     let hint = "";
@@ -468,6 +469,128 @@ window.addEventListener("load", () => {
             .innerText =
             ">> introduce tu ID";
     }
+});
+
+//MENSAJES
+function sendMessage() {
+
+    const input =
+        document.getElementById("msgInput");
+
+    const text = input.value.trim();
+
+    if (!text) return;
+
+    const box =
+        document.getElementById("chatBox");
+
+    // 1. crear elemento
+    const msg = document.createElement("p");
+    msg.innerText = "> " + text;
+
+    // 2. añadirlo a pantalla
+    box.appendChild(msg);
+
+    // 3. scroll automático
+    box.scrollTop = box.scrollHeight;
+
+    // 4. borrar después de X segundos
+    setTimeout(() => {
+        msg.remove();
+    }, 5000); // 👈 5 segundos
+
+    input.value = "";
+}
+
+//ADMIN PANEL
+let code = "";
+
+function openAdminPanel() {
+    document.getElementById("adminModal").style.display = "block";
+}
+
+function pressKey(num) {
+    code += num;
+    document.getElementById("codeInput").value = code;
+}
+
+function clearCode() {
+    code = "";
+    document.getElementById("codeInput").value = "";
+}
+
+function checkCode() {
+
+    if (code === "3232") {
+
+        window.location.href = "admin.html";
+
+    } else {
+
+        alert("ACCESS DENIED");
+
+        clearCode();
+    }
+}
+
+function openAdminTools() {
+
+    const box = document.getElementById("chatBox");
+
+    box.innerHTML += `<p style="color:red">[SYSTEM] ADMIN ACCESS GRANTED</p>`;
+}
+
+//ns
+async function sendAdminMessage() {
+
+    const text =
+        document.getElementById("adminMessage").value.trim();
+
+    if (!text) return;
+
+    const fb = window.firebaseDB;
+
+    await fb.addDoc(
+        fb.collection(fb.db, "messages"),
+        {
+            text: "[ADMIN] " + text,
+            time: Date.now()
+        }
+    );
+
+    document.getElementById("adminMessage").value = "";
+}
+
+function listenMessages() {
+
+    const fb = window.firebaseDB;
+
+    const q = fb.query(
+        fb.collection(fb.db, "messages"),
+        fb.orderBy("time")
+    );
+
+    fb.onSnapshot(q, (snapshot) => {
+
+        const box =
+            document.getElementById("chatBox");
+
+        box.innerHTML = "";
+
+        snapshot.forEach((doc) => {
+
+            const msg = doc.data();
+
+            box.innerHTML += `
+            <p style="color:red">
+            ${msg.text}
+            </p>`;
+        });
+    });
+}
+
+window.addEventListener("load", () => {
+    listenMessages();
 });
 
 if (MAINTENANCE_MODE) {
