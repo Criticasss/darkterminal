@@ -505,7 +505,7 @@ function checkCode() {
 
 function openAdminTools() {
 
-    const box = document.getElementById("chatBox");
+    const box = document.getElementById("chatbox");
 
     box.innerHTML += `<p style="color:red">[SYSTEM] ADMIN ACCESS GRANTED</p>`;
 }
