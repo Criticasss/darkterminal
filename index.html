@@ -12,6 +12,7 @@ function googleTranslateElementInit() {
         pageLanguage: 'es'
     }, 'google_translate_element');
 }
+
 </script>
 
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -35,6 +36,8 @@ function googleTranslateElementInit() {
         <p id="loginMessage"></p>
 
     </div>
+
+    
 
 </div>
 
@@ -68,6 +71,9 @@ function googleTranslateElementInit() {
 
 <div class="container">
     <h1 class="glitch">DARK TERMINAL</h1>
+
+<div id="chatBox"></div>
+
     <p class="subtitle">>> Acceso restringido</p>
 
     <p class="intro">
@@ -75,6 +81,35 @@ function googleTranslateElementInit() {
         Cada nivel es una capa de seguridad.<br>
         Encuentra las claves... o quédate atrapado.
     </p>
+
+    <button id="adminBtn" onclick="openAdminPanel()">
+ADMIN
+</button>
+
+<div id="adminModal" style="display:none;">
+    <h3>ADMIN ACCESS</h3>
+
+    <input id="codeInput" readonly />
+
+    <div id="numpad">
+        <button onclick="pressKey(1)">1</button>
+        <button onclick="pressKey(2)">2</button>
+        <button onclick="pressKey(3)">3</button><br>
+
+        <button onclick="pressKey(4)">4</button>
+        <button onclick="pressKey(5)">5</button>
+        <button onclick="pressKey(6)">6</button><br>
+
+        <button onclick="pressKey(7)">7</button>
+        <button onclick="pressKey(8)">8</button>
+        <button onclick="pressKey(9)">9</button><br>
+
+        <button onclick="pressKey(0)">0</button>
+
+        <button onclick="checkCode()">ENTER</button>
+        <button onclick="clearCode()">CLEAR</button>
+    </div>
+</div>
 
     <div class="levels">
  <button onclick="goToLevel(1)">Terminal 1</button>
@@ -94,6 +129,8 @@ function googleTranslateElementInit() {
 
     <button class="reset" onclick="resetGame()">Reiniciar sistema</button>
 </div>
+
+
 
 <script src="script.js"></script>
 </body>
