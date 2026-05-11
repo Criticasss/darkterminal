@@ -2,7 +2,7 @@ let timeLeft = 5;
 let timerInterval;
 let correctWire;
 
-const MAINTENANCE_MODE = false;
+const MAINTENANCE_MODE = true;
 
 // Inicializar progreso
 if (!localStorage.getItem("progress")) {
