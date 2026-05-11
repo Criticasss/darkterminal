@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN PANEL</title>
+
+    <style>
+        body {
+            background: black;
+            color: #00ff88;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<style>
+
+button {
+
+    background: black;
+    color: #00ff88;
+
+    border: 2px solid #00ff88;
+
+    padding: 10px 20px;
+
+    font-family: monospace;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 10px #00ff88;
+
+    transition: 0.2s;
+
+    margin: 5px;
+}
+
+button:hover {
+
+    background: #00ff88;
+    color: black;
+
+    box-shadow: 0 0 20px #00ff88;
+}
+
+input {
+
+    background: black;
+    color: #00ff88;
+
+    border: 2px solid #00ff88;
+
+    padding: 10px;
+
+    font-family: monospace;
+    font-size: 16px;
+
+    outline: none;
+
+    box-shadow: 0 0 10px #00ff88;
+
+    margin: 5px;
+}
+
+body {
+    background: black;
+    color: #00ff88;
+    font-family: monospace;
+}
+
+</style>
+
+<body>
+
+    <h1>ADMIN PANEL</h1>
+
+    <h2>GLOBAL SYSTEM MESSAGE</h2>
+
+<input id="adminMessage" placeholder="mensaje global..." />
+
+<button onclick="sendAdminMessage()">
+ENVIAR GLOBAL
+</button>
+
+    <p>Acceso autorizado.</p>
+
+    
+    <button onclick="goBack()" 
+style="
+position:fixed;
+top:200px;
+left:10px;
+background:black;
+color:#00ff88;
+border:2px solid #00ff88;
+padding:10px 20px;
+font-family:monospace;
+font-size:16px;
+cursor:pointer;
+box-shadow:0 0 10px #00ff88;
+transition:0.2s;
+">
+VOLVER
+</button>
+
+<script>
+function goBack() {
+    sessionStorage.removeItem("admin");
+    window.location.href = "index.html";
+}
+</script>
+
+</script>
+
+</body>
+</html>
