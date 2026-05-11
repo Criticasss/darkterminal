@@ -16,7 +16,31 @@ function googleTranslateElementInit() {
 
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<body class="fade-in">
+<body class="fade-in"><div id="loginScreen">
+
+    <div class="login-box">
+
+        <h2>DARK TERMINAL</h2>
+
+        <p>> introduce tu identidad</p>
+
+        <input type="text" id="loginInput" placeholder="ID">
+
+        <button onclick="login()">INICIAR SESIÓN</button>
+
+        <button onclick="createAccount()">
+            CREAR IDENTIDAD
+        </button>
+
+        <p id="loginMessage"></p>
+
+    </div>
+
+</div>
+
+<div id="userHud">
+    USER: <span id="userIDDisplay"></span>
+</div>
 
     <div id="google_translate_element"></div>
 
@@ -61,6 +85,8 @@ function googleTranslateElementInit() {
 <button onclick="goToLevel(6)">Terminal 6</button>
 <button onclick="goToLevel(7)">Terminal 7</button>
 <button onclick="goToLevel(8)">Terminal 8</button>
+<button onclick="goToLevel(9)">Terminal 9</button>
+<button onclick="goToLevel(10)">Terminal 10</button>
 <a href="https://losandeleros.onrender.com" target="_blank">
     <button class="menu-btn">>> ACCEDER A RED EXTERNA</button>
 </a>
