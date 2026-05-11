@@ -471,36 +471,6 @@ window.addEventListener("load", () => {
     }
 });
 
-//MENSAJES
-function sendMessage() {
-
-    const input =
-        document.getElementById("msgInput");
-
-    const text = input.value.trim();
-
-    if (!text) return;
-
-    const box =
-        document.getElementById("chatBox");
-
-    // 1. crear elemento
-    const msg = document.createElement("p");
-    msg.innerText = "> " + text;
-
-    // 2. añadirlo a pantalla
-    box.appendChild(msg);
-
-    // 3. scroll automático
-    box.scrollTop = box.scrollHeight;
-
-    // 4. borrar después de X segundos
-    setTimeout(() => {
-        msg.remove();
-    }, 5000); // 👈 5 segundos
-
-    input.value = "";
-}
 
 //ADMIN PANEL
 let code = "";
@@ -543,12 +513,11 @@ function openAdminTools() {
 //ns
 async function sendAdminMessage() {
 
-    const text =
-        document.getElementById("adminMessage").value.trim();
+    const fb = window.firebaseDB;
+
+    const text = document.getElementById("adminMessage").value.trim();
 
     if (!text) return;
-
-    const fb = window.firebaseDB;
 
     await fb.addDoc(
         fb.collection(fb.db, "messages"),
@@ -572,8 +541,9 @@ function listenMessages() {
 
     fb.onSnapshot(q, (snapshot) => {
 
-        const box =
-            document.getElementById("chatBox");
+        const box = document.getElementById("chatBox");
+
+        if (!box) return;
 
         box.innerHTML = "";
 
@@ -581,17 +551,13 @@ function listenMessages() {
 
             const msg = doc.data();
 
-            box.innerHTML += `
-            <p style="color:red">
-            ${msg.text}
-            </p>`;
+            box.innerHTML += `<p>> ${msg.text}</p>`;
         });
     });
 }
 
-window.addEventListener("load", () => {
-    listenMessages();
-});
+window.addEventListener("load", listenMessages);
+
 
 if (MAINTENANCE_MODE) {
     window.location.href = "mantenimiento.html";
