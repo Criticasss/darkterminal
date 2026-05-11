@@ -29,4 +29,4 @@ window.firebaseDB = {
     orderBy
 };
 
-console.log("FIREBASE CARGADO OK");
+console.log("ok");
