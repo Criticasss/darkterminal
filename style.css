@@ -323,3 +323,43 @@ input {
     z-index: 999;
 }
 
+#adminBtn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: black;
+    color: #00ff88;
+    border: 1px solid #00ff88;
+    padding: 8px;
+    cursor: pointer;
+}
+
+#backBtn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+
+    background: black;
+    color: #00ff88;
+
+    border: 2px solid #00ff88;
+
+    padding: 10px 20px;
+
+    font-family: monospace;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 10px #00ff88;
+
+    transition: 0.2s;
+}
+
+#backBtn:hover {
+    background: #00ff88;
+    color: black;
+
+    box-shadow: 0 0 20px #00ff88;
+}
+
