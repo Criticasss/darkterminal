@@ -612,6 +612,27 @@ function listenOnlineUsers() {
     );
 }
 
+//BORRAR CHATS
+async function clearChat() {
+
+    const fb = window.firebaseDB;
+
+    const q = fb.query(
+        fb.collection(fb.db, "messages")
+    );
+
+    const snapshot = await fb.getDocs(q);
+
+    snapshot.forEach(async (docItem) => {
+
+        await fb.deleteDoc(
+            fb.doc(fb.db, "messages", docItem.id)
+        );
+    });
+
+    console.log("CHAT BORRADO");
+}
+
 window.addEventListener("load", () => {
 
     setUserOnline();
