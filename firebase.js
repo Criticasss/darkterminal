@@ -1,4 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
 import {
   getFirestore,
   collection,
@@ -8,7 +9,8 @@ import {
   orderBy,
   deleteDoc,
   doc,
-  getDocs
+  getDocs,
+  setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 console.log("🔥 firebase.js cargando");
@@ -23,7 +25,7 @@ const firebaseConfig = {
   appId: "1:808682896729:web:b644e59aa13b59a4136048"
 };
 
-// 🔥 INICIALIZAR
+// 🔥 INICIALIZAR APP
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -40,7 +42,8 @@ window.firebaseDB = {
 
     deleteDoc,
     doc,
-    getDocs
+    getDocs,
+    setDoc
 };
 
 console.log("🔥 FIREBASE LISTO");
