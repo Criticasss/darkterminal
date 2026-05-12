@@ -505,7 +505,7 @@ function checkCode() {
 
 function openAdminTools() {
 
-    const box = document.getElementById("chatbox");
+    const box = document.getElementById("chat");
 
     box.innerHTML += `<p style="color:red">[SYSTEM] ADMIN ACCESS GRANTED</p>`;
 }
@@ -557,6 +557,49 @@ function listenMessages() {
 }
 
 window.addEventListener("load", listenMessages);
+
+//USUARIOS ONLINE
+async function setUserOnline() {
+
+    const fb = window.firebaseDB;
+
+    const userId =
+        localStorage.getItem("darkTerminalID");
+
+    if (!userId) return;
+
+    await fb.addDoc(
+        fb.collection(fb.db, "onlineUsers"),
+        {
+            id: userId,
+            time: Date.now()
+        }
+    );
+}
+
+function listenOnlineUsers() {
+
+    const fb = window.firebaseDB;
+
+    fb.onSnapshot(
+
+        fb.collection(fb.db, "onlineUsers"),
+
+        (snapshot) => {
+
+            document.getElementById(
+                "onlineCount"
+            ).innerText =
+            "ONLINE USERS: " + snapshot.size;
+        }
+    );
+}
+
+window.addEventListener("load", () => {
+
+    setUserOnline();
+
+});
 
 
 if (MAINTENANCE_MODE) {
