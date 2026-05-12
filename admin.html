@@ -14,6 +14,8 @@
 </head>
 <style>
 
+
+
 button {
 
     background: black;
@@ -70,6 +72,9 @@ body {
 
 </style>
 
+<script type="module" src="firebase.js"></script>
+<script src="script.js"></script>
+
 <body>
 
     <h1>ADMIN PANEL</h1>
@@ -82,13 +87,26 @@ body {
 ENVIAR GLOBAL
 </button>
 
+<h2 id="onlineCount">
+ONLINE USERS: 0
+</h2>
+
+<script>
+window.addEventListener("load", () => {
+
+    listenOnlineUsers();
+
+});
+</script>
+
+
     <p>Acceso autorizado.</p>
 
     
     <button onclick="goBack()" 
 style="
 position:fixed;
-top:200px;
+top:250px;
 left:10px;
 background:black;
 color:#00ff88;
