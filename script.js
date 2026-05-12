@@ -510,7 +510,7 @@ function openAdminTools() {
     box.innerHTML += `<p style="color:red">[SYSTEM] ADMIN ACCESS GRANTED</p>`;
 }
 
-//ns
+//MENSAJES ADMIN
 async function sendAdminMessage() {
 
     const fb = window.firebaseDB;
@@ -528,6 +528,23 @@ async function sendAdminMessage() {
     );
 
     document.getElementById("adminMessage").value = "";
+
+    // 🔥 borrar solo visualmente después de 5s
+    setTimeout(() => {
+
+        const box = document.getElementById("chatBox");
+
+        if (!box) return;
+
+        const messages = box.querySelectorAll("p");
+
+        const lastMessage = messages[messages.length - 1];
+
+        if (lastMessage) {
+            lastMessage.remove();
+        }
+
+    }, 5000);
 }
 
 function listenMessages() {
