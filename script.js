@@ -491,7 +491,7 @@ function clearCode() {
 
 function checkCode() {
 
-    if (code === "2332") {
+    if (code === "3232") {
 
         window.location.href = "admin.html";
 
@@ -632,6 +632,46 @@ async function clearChat() {
 
     console.log("CHAT BORRADO");
 }
+
+//SECRET TERMINAL
+async function activateSecretTerminal(){
+
+    const fb = window.firebaseDB;
+
+    await fb.setDoc(
+        fb.doc(fb.db, "system", "event"),
+        {
+            type: "secret",
+            active: true,
+            target: "secret.html",
+            time: Date.now()
+        }
+    );
+
+    console.log("TERMINAL OCULTA ACTIVADA");
+}
+
+function listenGlobalEvent(){
+
+    const fb = window.firebaseDB;
+
+    fb.onSnapshot(
+        fb.doc(fb.db, "system", "event"),
+        (snap) => {
+
+            const data = snap.data();
+
+            if(!data) return;
+
+            if(data.active && data.type === "secret"){
+
+                window.location.href = data.target;
+            }
+        }
+    );
+}
+
+window.addEventListener("load", listenGlobalEvent);
 
 window.addEventListener("load", () => {
 
