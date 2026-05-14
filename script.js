@@ -491,7 +491,7 @@ function clearCode() {
 
 function checkCode() {
 
-    if (code === "3232") {
+    if (code === "2332") {
 
         window.location.href = "admin.html";
 
@@ -669,6 +669,91 @@ function listenGlobalEvent(){
             }
         }
     );
+}
+
+//BLACKOUT
+async function activateBlackout(){
+
+    const fb = window.firebaseDB;
+
+    await fb.setDoc(
+        fb.doc(fb.db, "system", "blackout"),
+        {
+            active: true,
+            time: Date.now()
+        }
+    );
+
+    setTimeout(async () => {
+
+    const fb = window.firebaseDB;
+
+    await fb.setDoc(
+        fb.doc(fb.db, "system", "blackout"),
+        {
+            active:false
+        }
+    );
+
+}, 1000);
+}
+
+function listenBlackout(){
+
+    const fb = window.firebaseDB;
+
+    fb.onSnapshot(
+        fb.doc(fb.db, "system", "blackout"),
+        (snap) => {
+
+            const data = snap.data();
+
+            if(!data) return;
+
+            if(data.active){
+
+                startBlackout();
+            }
+        }
+    );
+}
+
+window.addEventListener("load", listenBlackout);
+
+function startBlackout(){
+
+    // evitar duplicados
+    if(document.getElementById("blackoutScreen"))
+        return;
+
+    const div = document.createElement("div");
+
+    div.id = "blackoutScreen";
+
+    div.style.position = "fixed";
+    div.style.top = "0";
+    div.style.left = "0";
+    div.style.width = "100%";
+    div.style.height = "100%";
+    div.style.background = "black";
+    div.style.color = "red";
+    div.style.display = "flex";
+    div.style.alignItems = "center";
+    div.style.justifyContent = "center";
+    div.style.fontSize = "40px";
+    div.style.zIndex = "999999";
+
+    div.innerText =
+    "SYSTEM BLACKOUT";
+
+    document.body.appendChild(div);
+
+    // quitar después de 5 segundos
+    setTimeout(() => {
+
+        div.remove();
+
+    }, 5000);
 }
 
 window.addEventListener("load", listenGlobalEvent);
