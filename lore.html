@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DarkTerminal // Lore</title>
+
+<link rel="icon" type="image/png" href="logo.png">
+
+<style>
+
+body{
+
+    background:black;
+    color:#00ff88;
+
+    font-family:monospace;
+
+    padding:40px;
+
+    overflow-x:hidden;
+}
+
+h1{
+
+    color:red;
+
+    text-shadow:0 0 15px red;
+}
+
+.log{
+
+    margin-bottom:30px;
+
+    border-left:2px solid #00ff88;
+
+    padding-left:15px;
+}
+
+.red{
+    color:red;
+}
+
+.corrupt{
+
+    color:white;
+
+    opacity:0.7;
+}
+
+button{
+
+    background:black;
+    color:#00ff88;
+
+    border:2px solid #00ff88;
+
+    padding:10px 20px;
+
+    font-family:monospace;
+
+    cursor:pointer;
+
+    margin-top:40px;
+}
+
+button:hover{
+
+    background:#00ff88;
+    color:black;
+
+    box-shadow:0 0 20px #00ff88;
+}
+
+#warning{
+
+    position:fixed;
+
+    bottom:10px;
+    right:10px;
+
+    color:red;
+
+    opacity:0.5;
+
+    font-size:12px;
+}
+
+</style>
+</head>
+<body>
+
+<h1>PROJECT DARKTERMINAL // ARCHIVED LOGS</h1>
+
+<div class="log">
+
+[1998] <br><br>
+
+Project DarkTerminal initiated.
+
+</div>
+
+<div class="log">
+
+[2001] <br><br>
+
+First blackout incident reported.
+
+</div>
+
+<div class="log red">
+
+[2003] <br><br>
+
+Unknown users began appearing inside the network.
+
+</div>
+
+<div class="log">
+
+[2004] <br><br>
+
+Omega Node connected to the main system.
+
+</div>
+
+<div class="log corrupt">
+
+██████ ERROR ██████ <br><br>
+
+Subject refused shutdown.
+
+</div>
+
+<div class="log">
+
+[2007] <br><br>
+
+The admin panel was never meant for human access.
+
+</div>
+
+<div class="log red">
+
+[2008] <br><br>
+
+Do not let users reach ROOT.
+
+</div>
+
+<div class="log corrupt">
+
+FILE CORRUPTED... <br><br>
+
+we should not have connected the terminals
+
+</div>
+
+<div class="log">
+
+[2011] <br><br>
+
+The blackout spread beyond the original network.
+
+</div>
+
+<div class="log red">
+
+[UNKNOWN DATE] <br><br>
+
+if you're reading this...
+
+it already knows you exist.
+
+</div>
+
+<a href="index.html">
+
+<button>
+<< RETURN TO TERMINAL
+</button>
+
+</a>
+
+<div id="warning">
+ARCHIVE STATUS: UNSTABLE
+</div>
+
+<script>
+
+// GLITCH RANDOM
+setInterval(() => {
+
+    if(Math.random() < 0.2){
+
+        document.body.style.filter = "invert(1)";
+
+        setTimeout(() => {
+
+            document.body.style.filter = "invert(0)";
+
+        }, 100);
+    }
+
+}, 3000);
+
+// MENSAJE RANDOM
+setTimeout(() => {
+
+    alert("WARNING: SOME FILES MAY BE INCOMPLETE");
+
+}, 2000);
+
+</script>
+
+</body>
+</html>
