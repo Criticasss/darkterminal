@@ -109,6 +109,10 @@ BLACKOUT
 
 </button>
 
+<button onclick="triggerGlobalEvent()">
+>> ROOT LORE
+</button>
+
 <script>
 window.addEventListener("load", () => {
 
@@ -145,6 +149,28 @@ function goBack() {
     window.location.href = "index.html";
 }
 </script>
+
+</script>
+
+<script type="module">
+
+const { db, doc, setDoc } = window.firebaseDB;
+
+window.triggerGlobalEvent = async function () {
+
+    await setDoc(doc(db, "system", "global"), {
+        redirect: true,
+        target: "root.html"
+    });
+
+    setTimeout(async () => {
+
+        await setDoc(doc(db, "system", "global"), {
+            redirect: false
+        });
+
+    }, 1000);
+};
 
 </script>
 
