@@ -648,7 +648,7 @@ async function activateSecretTerminal(){
         }
     );
 
-    console.log("TERMINAL OCULTA ACTIVADA");
+    window.location.href = "secret.html";
 }
 
 function listenGlobalEvent(){
@@ -1064,4 +1064,3 @@ window.addEventListener("load", () => {
 if (MAINTENANCE_MODE) {
     window.location.href = "mantenimiento.html";
 }
-
