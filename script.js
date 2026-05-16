@@ -757,37 +757,25 @@ function startBlackout(){
 }
 
 //HACKEO EN TIEMPO REAL
-async function startHackEvent(){
-
-    await setDoc(
-        doc(db, "system", "hack"),
-        {
-
-            active:true
-
-        }
-    );
-
-    // APAGAR A LOS 30 SEGUNDOS
-    setTimeout(async () => {
-
-        await setDoc(
-            doc(db, "system", "hack"),
-            {
-
-                active:false
-
-            }
-        );
-
-    }, 30000);
+const {
+    db,
+    doc,
+    onSnapshot
 }
+= window.firebaseDB;
 
+let hackInterval;
+
+// ESCUCHAR FIREBASE
 onSnapshot(
+
     doc(db, "system", "hack"),
+
     (snap) => {
 
         const data = snap.data();
+
+        console.log(data);
 
         if(data?.active){
 
@@ -801,48 +789,58 @@ onSnapshot(
     }
 );
 
-let hackInterval;
-
 function startHackEffects(){
 
-    document.body.style.background = "darkred";
+    console.log("HACK STARTED");
+
+    document.body.style.background =
+        "darkred";
 
     document.body.style.animation =
         "shake 0.2s infinite";
 
+    showHackMessage();
+
     hackInterval = setInterval(() => {
 
-        document.body.style.filter = "invert(1)";
+        document.body.style.filter =
+            "invert(1)";
 
         setTimeout(() => {
 
-            document.body.style.filter = "invert(0)";
+            document.body.style.filter =
+                "invert(0)";
 
         }, 100);
 
     }, 500);
-
-    showHackMessage();
 }
 
 function stopHackEffects(){
 
+    console.log("HACK STOPPED");
+
     clearInterval(hackInterval);
 
-    // TRANSICIÓN
     document.body.style.transition =
         "all 2s";
 
-    document.body.style.background = "black";
+    document.body.style.background =
+        "black";
 
-    document.body.style.animation = "none";
+    document.body.style.animation =
+        "none";
 
-    document.body.style.filter = "invert(0)";
+    document.body.style.filter =
+        "invert(0)";
 
     removeHackMessage();
 }
 
 function showHackMessage(){
+
+    if(document.getElementById("hackMessage"))
+        return;
 
     let div = document.createElement("div");
 
@@ -852,7 +850,9 @@ function showHackMessage(){
         "UNAUTHORIZED ACCESS DETECTED";
 
     div.style.position = "fixed";
+
     div.style.top = "40%";
+
     div.style.left = "50%";
 
     div.style.transform =
@@ -861,6 +861,8 @@ function showHackMessage(){
     div.style.fontSize = "50px";
 
     div.style.color = "red";
+
+    div.style.fontFamily = "monospace";
 
     div.style.zIndex = "99999";
 
