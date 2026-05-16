@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DarkTerminal // Lore</title>
+<title>DarkTerminal // Lore Archive</title>
 
 <link rel="icon" type="image/png" href="logo.png">
 
 <style>
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
 
     background:black;
+
     color:#00ff88;
 
     font-family:monospace;
@@ -20,57 +29,123 @@ body{
     padding:40px;
 
     overflow-x:hidden;
+
+    animation:boot 2s ease;
+}
+
+@keyframes boot{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
 }
 
 h1{
 
     color:red;
 
-    text-shadow:0 0 15px red;
+    font-size:42px;
+
+    margin-bottom:10px;
+
+    text-shadow:0 0 20px red;
+}
+
+.subtitle{
+
+    opacity:0.7;
+
+    margin-bottom:50px;
+
+    color:#00ff88;
 }
 
 .log{
 
-    margin-bottom:30px;
+    margin-bottom:35px;
 
     border-left:2px solid #00ff88;
 
-    padding-left:15px;
+    padding-left:20px;
+
+    transition:0.3s;
+}
+
+.log:hover{
+
+    transform:translateX(10px);
+
+    text-shadow:0 0 10px #00ff88;
 }
 
 .red{
+
     color:red;
+
+    border-left:2px solid red;
 }
 
 .corrupt{
 
     color:white;
 
-    opacity:0.7;
+    opacity:0.6;
+
+    filter:blur(0.3px);
+}
+
+.date{
+
+    color:#00ffaa;
+
+    margin-bottom:10px;
+
+    display:block;
+}
+
+.warningBox{
+
+    margin-top:60px;
+
+    padding:20px;
+
+    border:2px solid red;
+
+    color:red;
+
+    animation:flicker 1s infinite;
 }
 
 button{
 
     background:black;
+
     color:#00ff88;
 
     border:2px solid #00ff88;
 
-    padding:10px 20px;
+    padding:12px 24px;
 
     font-family:monospace;
 
     cursor:pointer;
 
-    margin-top:40px;
+    margin-top:50px;
+
+    transition:0.3s;
 }
 
 button:hover{
 
     background:#00ff88;
+
     color:black;
 
-    box-shadow:0 0 20px #00ff88;
+    box-shadow:0 0 25px #00ff88;
 }
 
 #warning{
@@ -78,110 +153,252 @@ button:hover{
     position:fixed;
 
     bottom:10px;
+
     right:10px;
 
     color:red;
 
-    opacity:0.5;
+    opacity:0.4;
 
     font-size:12px;
+
+    letter-spacing:2px;
+}
+
+.scanline{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    pointer-events:none;
+
+    background:
+    repeating-linear-gradient(
+
+        to bottom,
+
+        rgba(255,255,255,0.03),
+
+        rgba(255,255,255,0.03) 1px,
+
+        transparent 1px,
+
+        transparent 3px
+    );
+
+    z-index:9999;
+}
+
+@keyframes flicker{
+
+    0%{opacity:1;}
+    50%{opacity:0.4;}
+    100%{opacity:1;}
+}
+
+.hidden{
+
+    margin-top:80px;
+
+    color:black;
+
+    user-select:none;
+}
+
+.hidden:hover{
+
+    color:#00ff88;
 }
 
 </style>
+
 </head>
+
 <body>
 
-<h1>PROJECT DARKTERMINAL // ARCHIVED LOGS</h1>
+<div class="scanline"></div>
+
+<h1>PROJECT DARKTERMINAL</h1>
+
+<p class="subtitle">
+ARCHIVED NETWORK LOGS // CLASSIFIED ACCESS ONLY
+</p>
 
 <div class="log">
 
-[1998] <br><br>
+<span class="date">[1998]</span>
 
-Project DarkTerminal initiated.
+Project DarkTerminal initiated by unknown operators.<br><br>
+
+Objective:
+Create a decentralized terminal network capable of surviving total communication collapse.
 
 </div>
 
 <div class="log">
 
-[2001] <br><br>
+<span class="date">[1999]</span>
 
-First blackout incident reported.
+Early tests successful.<br><br>
+
+Users reported hearing distorted voices through inactive terminals.
+
+</div>
+
+<div class="log">
+
+<span class="date">[2001]</span>
+
+First blackout incident reported.<br><br>
+
+Entire sector lost power for 18 minutes after Node-03 activation.
 
 </div>
 
 <div class="log red">
 
-[2003] <br><br>
+<span class="date">[2003]</span>
 
-Unknown users began appearing inside the network.
+Unauthorized users detected inside the network.<br><br>
+
+No login records exist.<br><br>
+
+No physical terminals were connected.
 
 </div>
 
 <div class="log">
 
-[2004] <br><br>
+<span class="date">[2004]</span>
 
-Omega Node connected to the main system.
+Omega Node connected to the main system.<br><br>
+
+Administrators immediately lost remote control access.
 
 </div>
 
 <div class="log corrupt">
 
-██████ ERROR ██████ <br><br>
+██████ DATA LOSS ██████ <br><br>
 
-Subject refused shutdown.
+we told them not to connect omega<br><br>
+
+they did not listen
 
 </div>
 
 <div class="log">
 
-[2007] <br><br>
+<span class="date">[2005]</span>
 
-The admin panel was never meant for human access.
+Internal messages began appearing automatically across terminals.<br><br>
+
+MESSAGE DETECTED:<br><br>
+
+"it sees through the static"
 
 </div>
 
 <div class="log red">
 
-[2008] <br><br>
+<span class="date">[2007]</span>
 
-Do not let users reach ROOT.
+Security teams attempted emergency shutdown.<br><br>
+
+Every terminal rebooted itself.
+
+</div>
+
+<div class="log">
+
+<span class="date">[2008]</span>
+
+Several users disappeared after entering ROOT access commands.<br><br>
+
+No traces found.
 
 </div>
 
 <div class="log corrupt">
 
-FILE CORRUPTED... <br><br>
+██████ SYSTEM WARNING ██████ <br><br>
 
-we should not have connected the terminals
+the network is no longer waiting for input
 
 </div>
 
 <div class="log">
 
-[2011] <br><br>
+<span class="date">[2010]</span>
 
-The blackout spread beyond the original network.
+Audio recovered from abandoned terminal facility:<br><br>
+
+"...if you're hearing this, disconnect immediately..."<br><br>
+
+[FILE ENDS]
 
 </div>
 
 <div class="log red">
 
-[UNKNOWN DATE] <br><br>
+<span class="date">[2011]</span>
 
-if you're reading this...
+Blackout spread beyond original infrastructure.<br><br>
 
-it already knows you exist.
+Civilian devices began receiving DarkTerminal signals.
+
+</div>
+
+<div class="log">
+
+<span class="date">[UNKNOWN DATE]</span>
+
+A hidden administrator account accessed the network.<br><br>
+
+USERNAME: ROOT<br><br>
+
+STATUS: ACTIVE
+
+</div>
+
+<div class="log corrupt">
+
+██████ FINAL ENTRY ██████ <br><br>
+
+it learned the difference between users and observers<br><br>
+
+now it watches both
+
+</div>
+
+<div class="warningBox">
+
+WARNING:<br><br>
+
+Accessing archived network logs may expose your terminal ID to external entities.
 
 </div>
 
 <a href="index.html">
 
 <button>
+
 << RETURN TO TERMINAL
+
 </button>
 
 </a>
+
+<div class="hidden">
+omega sees you
+</div>
 
 <div id="warning">
 ARCHIVE STATUS: UNSTABLE
@@ -189,28 +406,60 @@ ARCHIVE STATUS: UNSTABLE
 
 <script>
 
-// GLITCH RANDOM
-setInterval(() => {
+function randomGlitch(){
 
-    if(Math.random() < 0.2){
+    if(Math.random() < 0.3){
 
-        document.body.style.filter = "invert(1)";
+        document.body.style.filter =
+            "invert(1)";
 
         setTimeout(() => {
 
-            document.body.style.filter = "invert(0)";
+            document.body.style.filter =
+                "invert(0)";
 
         }, 100);
     }
+}
 
-}, 3000);
+setInterval(randomGlitch, 4000);
 
-// MENSAJE RANDOM
 setTimeout(() => {
 
-    alert("WARNING: SOME FILES MAY BE INCOMPLETE");
+    alert(
+        "WARNING: CORRUPTED FILES DETECTED"
+    );
 
-}, 2000);
+}, 2500);
+
+setInterval(() => {
+
+    const logs =
+        document.querySelectorAll(".log");
+
+    const random =
+        logs[Math.floor(Math.random() * logs.length)];
+
+    random.style.opacity =
+        Math.random() * 0.5 + 0.5;
+
+}, 1000);
+
+document.addEventListener("keydown", (e) => {
+
+    if(e.key.toLowerCase() === "r"){
+
+        document.body.style.background =
+            "darkred";
+
+        setTimeout(() => {
+
+            document.body.style.background =
+                "black";
+
+        }, 200);
+    }
+});
 
 </script>
 
