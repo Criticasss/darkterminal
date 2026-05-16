@@ -756,6 +756,129 @@ function startBlackout(){
     }, 5000);
 }
 
+//HACKEO EN TIEMPO REAL
+async function startHackEvent(){
+
+    await setDoc(
+        doc(db, "system", "hack"),
+        {
+
+            active:true
+
+        }
+    );
+
+    // APAGAR A LOS 30 SEGUNDOS
+    setTimeout(async () => {
+
+        await setDoc(
+            doc(db, "system", "hack"),
+            {
+
+                active:false
+
+            }
+        );
+
+    }, 30000);
+}
+
+onSnapshot(
+    doc(db, "system", "hack"),
+    (snap) => {
+
+        const data = snap.data();
+
+        if(data?.active){
+
+            startHackEffects();
+
+        }else{
+
+            stopHackEffects();
+
+        }
+    }
+);
+
+let hackInterval;
+
+function startHackEffects(){
+
+    document.body.style.background = "darkred";
+
+    document.body.style.animation =
+        "shake 0.2s infinite";
+
+    hackInterval = setInterval(() => {
+
+        document.body.style.filter = "invert(1)";
+
+        setTimeout(() => {
+
+            document.body.style.filter = "invert(0)";
+
+        }, 100);
+
+    }, 500);
+
+    showHackMessage();
+}
+
+function stopHackEffects(){
+
+    clearInterval(hackInterval);
+
+    // TRANSICIÓN
+    document.body.style.transition =
+        "all 2s";
+
+    document.body.style.background = "black";
+
+    document.body.style.animation = "none";
+
+    document.body.style.filter = "invert(0)";
+
+    removeHackMessage();
+}
+
+function showHackMessage(){
+
+    let div = document.createElement("div");
+
+    div.id = "hackMessage";
+
+    div.innerHTML =
+        "UNAUTHORIZED ACCESS DETECTED";
+
+    div.style.position = "fixed";
+    div.style.top = "40%";
+    div.style.left = "50%";
+
+    div.style.transform =
+        "translate(-50%,-50%)";
+
+    div.style.fontSize = "50px";
+
+    div.style.color = "red";
+
+    div.style.zIndex = "99999";
+
+    document.body.appendChild(div);
+}
+
+function removeHackMessage(){
+
+    let div =
+        document.getElementById("hackMessage");
+
+    if(div){
+
+        div.remove();
+
+    }
+}
+
 window.addEventListener("load", listenGlobalEvent);
 
 window.addEventListener("load", () => {
