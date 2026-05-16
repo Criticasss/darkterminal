@@ -756,7 +756,10 @@ function startBlackout(){
     }, 5000);
 }
 
-//HACKEO EN TIEMPO REAL
+// ==========================
+// REALTIME HACK EVENT SYSTEM
+// ==========================
+
 const {
     db,
     doc,
@@ -764,9 +767,19 @@ const {
 }
 = window.firebaseDB;
 
-let hackInterval;
 
-// ESCUCHAR FIREBASE
+// ==========================
+// VARIABLES
+// ==========================
+
+let hackInterval;
+let glitchInterval;
+
+
+// ==========================
+// FIREBASE LISTENER
+// ==========================
+
 onSnapshot(
 
     doc(db, "system", "hack"),
@@ -775,7 +788,7 @@ onSnapshot(
 
         const data = snap.data();
 
-        console.log(data);
+        console.log("HACK DATA:", data);
 
         if(data?.active){
 
@@ -789,19 +802,32 @@ onSnapshot(
     }
 );
 
+
+// ==========================
+// START HACK
+// ==========================
+
 function startHackEffects(){
 
     console.log("HACK STARTED");
 
+
+    // FONDO ROJO
     document.body.style.background =
         "darkred";
 
-    document.body.style.animation =
-        "shake 0.2s infinite";
 
+    // SHAKE
+    document.body.style.animation =
+        "shake 0.15s infinite";
+
+
+    // MENSAJE
     showHackMessage();
 
-    hackInterval = setInterval(() => {
+
+    // GLITCHES
+    glitchInterval = setInterval(() => {
 
         document.body.style.filter =
             "invert(1)";
@@ -813,41 +839,74 @@ function startHackEffects(){
 
         }, 100);
 
-    }, 500);
+    }, 400);
+
+
+    // TEXTO RANDOM
+    hackInterval = setInterval(() => {
+
+        randomHackText();
+
+    }, 2000);
 }
+
+
+// ==========================
+// STOP HACK
+// ==========================
 
 function stopHackEffects(){
 
     console.log("HACK STOPPED");
 
+
     clearInterval(hackInterval);
+
+    clearInterval(glitchInterval);
+
 
     document.body.style.transition =
         "all 2s";
 
+
     document.body.style.background =
         "black";
+
 
     document.body.style.animation =
         "none";
 
+
     document.body.style.filter =
         "invert(0)";
 
+
     removeHackMessage();
+
+
+    showEndMessage();
 }
+
+
+// ==========================
+// SHOW MAIN MESSAGE
+// ==========================
 
 function showHackMessage(){
 
+    // EVITAR DUPLICADOS
     if(document.getElementById("hackMessage"))
         return;
+
 
     let div = document.createElement("div");
 
     div.id = "hackMessage";
 
+
     div.innerHTML =
         "UNAUTHORIZED ACCESS DETECTED";
+
 
     div.style.position = "fixed";
 
@@ -858,16 +917,27 @@ function showHackMessage(){
     div.style.transform =
         "translate(-50%,-50%)";
 
-    div.style.fontSize = "50px";
 
-    div.style.color = "red";
+    div.style.fontSize = "50px";
 
     div.style.fontFamily = "monospace";
 
-    div.style.zIndex = "99999";
+    div.style.color = "red";
+
+    div.style.textShadow =
+        "0 0 20px red";
+
+
+    div.style.zIndex = "999999";
+
 
     document.body.appendChild(div);
 }
+
+
+// ==========================
+// REMOVE MAIN MESSAGE
+// ==========================
 
 function removeHackMessage(){
 
@@ -877,8 +947,109 @@ function removeHackMessage(){
     if(div){
 
         div.remove();
-
     }
+}
+
+
+// ==========================
+// RANDOM HACK TEXT
+// ==========================
+
+function randomHackText(){
+
+    const messages = [
+
+        "SYSTEM COMPROMISED",
+        "FIREWALL FAILURE",
+        "UNKNOWN ENTITY DETECTED",
+        "NODE OMEGA ACTIVE",
+        "SECURITY BREACH",
+        "THEY ARE INSIDE",
+        "ROOT ACCESS GRANTED"
+
+    ];
+
+    let old =
+        document.getElementById("randomHack");
+
+    if(old){
+
+        old.remove();
+    }
+
+
+    let div = document.createElement("div");
+
+    div.id = "randomHack";
+
+
+    div.innerHTML =
+
+        messages[
+            Math.floor(
+                Math.random() * messages.length
+            )
+        ];
+
+
+    div.style.position = "fixed";
+
+    div.style.bottom = "20px";
+
+    div.style.left = "20px";
+
+    div.style.fontSize = "25px";
+
+    div.style.fontFamily = "monospace";
+
+    div.style.color = "red";
+
+    div.style.zIndex = "999999";
+
+
+    document.body.appendChild(div);
+}
+
+
+// ==========================
+// END MESSAGE
+// ==========================
+
+function showEndMessage(){
+
+    let div = document.createElement("div");
+
+    div.innerHTML =
+        "BREACH CONTAINED";
+
+
+    div.style.position = "fixed";
+
+    div.style.top = "40%";
+
+    div.style.left = "50%";
+
+    div.style.transform =
+        "translate(-50%,-50%)";
+
+
+    div.style.fontSize = "45px";
+
+    div.style.fontFamily = "monospace";
+
+    div.style.color = "#00ff88";
+
+    div.style.zIndex = "999999";
+
+
+    document.body.appendChild(div);
+
+
+    setTimeout(() => {
+
+        div.remove();
+
+    }, 3000);
 }
 
 window.addEventListener("load", listenGlobalEvent);
@@ -893,3 +1064,4 @@ window.addEventListener("load", () => {
 if (MAINTENANCE_MODE) {
     window.location.href = "mantenimiento.html";
 }
+
