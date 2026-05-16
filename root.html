@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ROOT // CASE FILE</title>
+
+<link rel="icon" href="logo.png">
+
+<style>
+
+body{
+    margin:0;
+    background:black;
+    color:#ff0000;
+    font-family:monospace;
+    overflow-x:hidden;
+    animation:flicker 0.2s infinite;
+}
+
+@keyframes flicker{
+    0%{opacity:1;}
+    50%{opacity:0.6;}
+    100%{opacity:1;}
+}
+
+.scanline{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    z-index:9999;
+}
+
+.container{
+    padding:50px;
+}
+
+h1{
+    font-size:40px;
+    text-shadow:0 0 20px red;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    opacity:0.6;
+    margin-bottom:40px;
+}
+
+.log{
+    margin-bottom:35px;
+    border-left:2px solid red;
+    padding-left:15px;
+    opacity:0.9;
+}
+
+.corrupt{
+    color:white;
+    opacity:0.4;
+    filter:blur(0.4px);
+}
+
+.blackbox{
+    margin-top:40px;
+    padding:15px;
+    border:1px solid red;
+    animation:flicker 0.5s infinite;
+}
+
+.warning{
+    margin-top:50px;
+    padding:15px;
+    border:2px solid red;
+    color:red;
+    text-shadow:0 0 10px red;
+}
+
+a{
+    color:#00ff88;
+    text-decoration:none;
+}
+
+a:hover{
+    text-shadow:0 0 10px #00ff88;
+}
+
+.hidden{
+    position:fixed;
+    bottom:10px;
+    right:10px;
+    font-size:10px;
+    opacity:0.08;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="scanline"></div>
+
+<div class="container">
+
+<h1>CASE FILE: SUBJECT "ROOT"</h1>
+
+<p class="subtitle">
+RECOVERED DATA FROM DARKTERMINAL INCIDENT // CLASSIFIED
+</p>
+
+<div class="log">
+
+NAME: UNKNOWN<br>
+DESIGNATION: ROOT (SYSTEM ASSIGNED)<br><br>
+
+Senior systems engineer assigned to DarkTerminal infrastructure.
+
+</div>
+
+<div class="log">
+
+[PERSONAL LOG - 2003]<br><br>
+
+“I noticed something inside the network that wasn’t in the codebase.<br>
+It reacts before input is given.”
+
+</div>
+
+<div class="log">
+
+[INCIDENT REPORT - 2004]<br><br>
+
+Attempted shutdown of Omega Node.<br><br>
+
+All systems rejected command authorization.<br>
+Root credentials were accepted… but not by the system he designed.
+
+</div>
+
+<div class="log corrupt">
+
+MEDICAL REPORT:<br><br>
+
+Subject found collapsed at terminal station 7.<br>
+No external trauma detected.<br>
+Neural activity stopped during active session.
+
+</div>
+
+<div class="blackbox">
+
+AUTOPSY NOTE (REDACTED):<br><br>
+
+brain activity continued for 37 seconds after clinical death<br>
+monitor recorded outgoing signal to DarkTerminal main node<br><br>
+
+signal source: SUBJECT ID ROOT
+
+</div>
+
+<div class="log">
+
+[POST-INCIDENT BEHAVIOR]<br><br>
+
+After death, system logs began generating entries using ROOT credentials.
+
+</div>
+
+<div class="log corrupt">
+
+“i never left the system”<br>
+“they just stopped seeing me as human”
+
+</div>
+
+<div class="warning">
+
+WARNING:<br><br>
+
+This file is not stable.<br>
+If you are reading this in real-time, the system may be reconstructing identity data.
+
+</div>
+
+<div style="margin-top:50px;">
+<a href="index.html"><< RETURN TO TERMINAL</a>
+</div>
+
+</div>
+
+<div class="hidden">
+he is still inside the network
+</div>
+
+</body>
+</html>
