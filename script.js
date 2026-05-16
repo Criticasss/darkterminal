@@ -755,6 +755,49 @@ function startBlackout(){
     }, 5000);
 }
 
+//ROOT LORE
+window.addEventListener("load", () => {
+
+    const {
+        db,
+        doc,
+        onSnapshot
+    } = window.firebaseDB;
+
+    // 🔴 ROOT GLOBAL EVENT
+    onSnapshot(doc(db, "system", "global"), (snap) => {
+
+        const data = snap.data();
+
+        if (data?.redirect === true) {
+
+            document.body.style.background = "black";
+            document.body.style.filter = "invert(1) contrast(2)";
+
+            document.body.innerHTML = `
+                <div style="
+                    color:red;
+                    font-family:monospace;
+                    text-align:center;
+                    margin-top:20%;
+                    font-size:30px;
+                    letter-spacing:2px;
+                ">
+                    SYSTEM OVERRIDE<br><br>
+                    ROOT HAS INTERFERED<br><br>
+                    REDIRECTING...
+                </div>
+            `;
+
+            setTimeout(() => {
+                window.location.href = data.target;
+            }, 3000);
+        }
+
+    });
+
+});
+
 
 window.addEventListener("load", listenGlobalEvent);
 
