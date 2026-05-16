@@ -491,7 +491,7 @@ function clearCode() {
 
 function checkCode() {
 
-    if (code === "2332") {
+    if (code === "0072") {
 
         window.location.href = "admin.html";
 
