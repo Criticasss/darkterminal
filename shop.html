@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="module" src="firebase.js"></script>
+
+
+<title>DarkTerminal // Market</title>
+
+<link rel="icon" href="logo.png">
+
+<style>
+
+body {
+    margin: 0;
+    background: black;
+    color: #00ff88;
+    font-family: monospace;
+    padding: 40px;
+}
+
+/* HEADER */
+.header {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: red;
+    text-shadow: 0 0 10px red;
+}
+
+/* COINS */
+#balance {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+
+    border: 1px solid #00ff88;
+    padding: 10px 14px;
+
+    background: black;
+    box-shadow: 0 0 10px #00ff88;
+}
+
+/* SHOP GRID */
+.shop {
+    margin-top: 80px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* ITEM */
+.item {
+    border: 1px solid #00ff88;
+    padding: 15px;
+
+    background: rgba(0,0,0,0.6);
+
+    transition: 0.2s;
+}
+
+.item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ff88;
+}
+
+/* TITLE */
+.item h3 {
+    margin: 0;
+    color: white;
+}
+
+/* DESC */
+.item p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* PRICE */
+.price {
+    margin-top: 10px;
+    color: #00ff88;
+}
+
+/* BUTTON */
+button {
+    margin-top: 10px;
+
+    width: 100%;
+    padding: 10px;
+
+    background: black;
+    color: #00ff88;
+
+    border: 1px solid #00ff88;
+
+    cursor: pointer;
+    font-family: monospace;
+}
+
+button:hover {
+    background: #00ff88;
+    color: black;
+}
+
+/* WARNING */
+.warning {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+
+    font-size: 12px;
+    opacity: 0.4;
+    color: red;
+}
+
+</style>
+
+<script type="module">
+
+window.addEventListener("load", () => {
+
+const {
+    db,
+    doc,
+    setDoc,
+    getDoc,
+    onSnapshot
+} = window.firebaseDB;
+
+// 👤 USER ID LOCAL
+let userId = localStorage.getItem("dark_user");
+
+if (!userId) {
+    userId = crypto.randomUUID();
+    localStorage.setItem("dark_user", userId);
+}
+
+const userRef = doc(db, "users", userId);
+
+// 💀 INIT USER SI NO EXISTE
+setDoc(userRef, {
+    darkcoins: 0,
+    inventory: []
+}, { merge: true });
+
+// 🪙 HUD (TU DIV)
+const balance = document.getElementById("balance");
+
+// 📡 ESCUCHAR COINS EN TIEMPO REAL
+onSnapshot(userRef, (snap) => {
+    const data = snap.data();
+    if (!data) return;
+
+    if (balance) {
+        balance.innerHTML = `💀 DARKCOINS: ${data.darkcoins ?? 0}`;
+    }
+});
+
+
+// 💰 FUNCIÓN DE COMPRA
+window.buyItem = async function(price, itemId) {
+
+    const snap = await getDoc(userRef);
+    const data = snap.data();
+
+    let coins = data.darkcoins || 0;
+    let inventory = data.inventory || [];
+
+    // ❌ NO TIENE SUFICIENTES COINS
+    if (coins < price) {
+        alert("INSUFFICIENT DARKCOINS");
+        return;
+    }
+
+    // ✔ COMPRA OK
+    coins -= price;
+    inventory.push(itemId);
+
+    await setDoc(userRef, {
+        darkcoins: coins,
+        inventory: inventory
+    }, { merge: true });
+
+    alert("PURCHASE SUCCESSFUL");
+
+};
+
+});
+</script>
+
+</head>
+<body>
+
+<div id="balance">
+💀 DARKCOINS: 0
+</div>
+
+<div class="header">
+SYSTEM MARKET // UNSTABLE NODE CONNECTION
+</div>
+
+<div class="shop">
+
+    <div class="item">
+        <h3>EXCLUSIVE LEAKS</h3>
+        <p>Access to exclusive leaks in our discord (open a ticket with a video buying this item in our discord server) </p>
+        <div class="price">150 DARKCOINS</div>
+        <button>UNLOCK</button>
+    </div>
+
+    <div class="item">
+        <h3>ROOT ARCHIVED LOGS</h3>
+        <p>Got the opportunity to read the real history of ROOT (please dont buy this if you are 11 years old or younger) (open a ticket with a video buying this item in our discord server) </p>
+        <div class="price">200 DARKCOINS</div>
+        <button>UNLOCK</button>
+    </div>
+
+    <div class="item">
+        <h3>SIMULATE BLACKOUT</h3>
+        <p>Simulate blackout (open a ticket with a video buying this item in our discord server) </p>
+        <div class="price">50 DARKCOINS</div>
+        <button>UNLOCK</button>
+    </div>
+
+    <div class="item">
+        <h3>ACCESS TO EXCLUSIVE TERMINAL</h3>
+        <p>Access to exlusive terminal (changing every week) (open a ticket with a video buying this item in our discord server) </p>
+        <div class="price">100 DARKCOINS</div>
+        <button>UNLOCK</button>
+    </div>
+
+</div>
+
+<div class="warning">
+SYSTEM STATUS: DEGRADED
+</div>
+
+</body>
+</html>
