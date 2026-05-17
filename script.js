@@ -798,6 +798,62 @@ window.addEventListener("load", () => {
 
 });
 
+//SHOP
+const shopItems = [
+{
+    id: "leaks",
+    name: "EXCLUSIVE LEAKS",
+    desc: "Access to exclusive leaks in our discord (open a ticket with a video buying this item).",
+    price: 150
+},
+{
+    id: "root_logs",
+    name: "ROOT ARCHIVED LOGS",
+    desc: "Read the real history of ROOT (recommended age 12+).",
+    price: 200
+},
+{
+    id: "blackout",
+    name: "SIMULATE BLACKOUT",
+    desc: "Trigger a simulated system blackout event.",
+    price: 50
+},
+{
+    id: "terminal",
+    name: "ACCESS TO EXCLUSIVE TERMINAL",
+    desc: "Access a weekly changing hidden terminal.",
+    price: 100
+}
+];
+
+//ENVIAR DARKCOINS
+const { db, getDocs, collection, updateDoc, doc } = window.firebaseDB;
+
+async function giveAllCoins() {
+
+    const amount = parseInt(document.getElementById("amount").value);
+
+    if (!amount || amount <= 0) {
+        alert("INVALID AMOUNT");
+        return;
+    }
+
+    const usersRef = collection(db, "users");
+    const snapshot = await getDocs(usersRef);
+
+    snapshot.forEach(async (userDoc) => {
+
+        const data = userDoc.data();
+        const current = data.darkcoins || 0;
+
+        await updateDoc(doc(db, "users", userDoc.id), {
+            darkcoins: current + amount
+        });
+    });
+
+    alert(`SENT ${amount} DARKCOINS TO ALL USERS`);
+}
+
 
 window.addEventListener("load", listenGlobalEvent);
 
