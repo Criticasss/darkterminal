@@ -370,6 +370,66 @@ input {
 50%{transform:translate(-5px);}
 75%{transform:translate(5px);}
 100%{transform:translate(0px);}
+}
 
+#darkcoinsHud {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 14px;
+
+    border: 2px solid #00ff88;
+    background: black;
+
+    font-family: monospace;
+    color: #00ff88;
+
+    z-index: 9999;
+
+    box-shadow: 0 0 12px #00ff88;
+    border-radius: 4px;
+}
+
+#darkcoinIcon {
+    width: 26px;
+    height: 26px;
+    image-rendering: pixelated;
+}
+
+#shopButton {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 9999;
+}
+
+#shopButton button {
+    background: black;
+    color: #00ff88;
+
+    border: 2px solid #00ff88;
+
+    padding: 10px 18px;
+
+    font-family: monospace;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 10px #00ff88;
+}
+
+#shopButton button:hover {
+    background: #00ff88;
+    color: black;
+
+    transform: scale(1.05);
+    transition: 0.2s;
 }
 
